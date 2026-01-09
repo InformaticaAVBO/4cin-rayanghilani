@@ -3,20 +3,24 @@ import java.io.IOException;
 import java.io.File;
 
 public class Player{
-    String nome;
-    int valore;
+    private String nome;
+    private int valore;
 
-    public Player(String nome, int valore){
+    public Player(String nome){
         this.nome=nome;
+        this.valore=0;
+    }
+
+    public void setValore(int valore){
         this.valore=valore;
     }
 
-    public void scrivifile(){
+    public void save(){
         File f = new File("data/" + nome + ".txt");
 
-        try(PrintWriter scrivi =new PrintWriter(f)){
-            scrivi.println(this.valore);
-            scrivi.close();
+        try(PrintWriter pw =new PrintWriter(f)){
+            pw.println(this.valore);
+            pw.close();
         }catch(Exception e){
             e.printStackTrace();
         }
